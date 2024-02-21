@@ -1,0 +1,13 @@
+<h1><%= @project.name %></h1>
+<h2>Material: </h2> <p><%= @project.material %></p>
+<h2>Challenge Theme:</h2> <p><%= @project.challenge.theme %></p>
+<h2>Number of Contestants:</h2> <p><%= @project.contestant_count %></p>
+<h2>Average Contestant Experience:</h2> <p><%= @project.average_years_of_contestant_experience %></p>
+
+
+<%= form_with url: "/contestant_projects", method: :post do |f| %>
+  <%= f.hidden_field :project_id, value: @project.id %>
+  <%= f.label :contestant_id, "Contestant Name:" %>
+  <%= f.collection_select :contestant_id, @contestants_not_working_on_project, :id, :name %>
+  <%= f.submit "Add Contestant to Project" %>
+<% end %>
